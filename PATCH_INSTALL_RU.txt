@@ -1,0 +1,28 @@
+MoneyMind — как применить исправления к существующему проекту
+
+ВАЖНО: этот архив содержит только исправленные и новые файлы. Он НЕ содержит .env, database/database.sqlite, vendor или node_modules, поэтому твоя текущая база данных и аккаунт останутся на месте.
+
+1. Закрой запущенный php artisan serve (в окне PowerShell нажми Ctrl+C).
+2. Извлеки содержимое архива прямо в папку:
+   C:\Users\sobol\Desktop\laravel-project
+   Сохрани структуру папок и согласись заменить совпадающие файлы.
+3. Открой PowerShell в папке проекта и выполни команды по одной:
+
+   php artisan optimize:clear
+   php artisan migrate
+   php artisan db:seed --class=CategorySeeder
+   php artisan route:list --path=transactions
+   php artisan serve
+
+4. Открой http://localhost:8000, войди в существующий аккаунт и проверь Transactions → Add transaction.
+
+Если хочешь, чтобы страницы регистрации и входа тоже показывали название MoneyMind в заголовке, открой файл .env и поменяй строку APP_NAME=Laravel на APP_NAME=MoneyMind. Не удаляй и не заменяй свой .env или database/database.sqlite.
+
+Проверка по требованиям преподавателя:
+- Авторизация: Laravel Breeze + middleware auth.
+- Связанные модели: Category hasMany Transaction; Transaction belongsTo Category и User.
+- CRUD: семь маршрутов ресурса transactions (index, create, store, show, edit, update, destroy).
+- Seeder: CategorySeeder добавляет пять категорий; повторный запуск не дублирует их.
+- AJAX: удаление из списка через fetch без полной перезагрузки страницы.
+- Blade: общий макет и шаблоны dashboard, index, create, edit, show.
+- Валидация: серверные правила плюс сообщения у полей формы.
